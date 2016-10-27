@@ -28,5 +28,6 @@ compileTestJava.options.encoding = 'UTF-8'
 dependencies {
 	compile 'org.springframework.boot:spring-boot-starter-aop:1.2.7.RELEASE'
     compile 'org.springframework:spring-aspects:4.1.8.RELEASE'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '0.9.26'
     
 }

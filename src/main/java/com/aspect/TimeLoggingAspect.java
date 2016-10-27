@@ -8,29 +8,32 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
 
 @Component
 @Aspect
 public class TimeLoggingAspect {
+    private static final Logger logger = LoggerFactory.getLogger(TimeLoggingAspect.class);
     SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-    Date current = new Date();
     
     @Before("execution(* com.service.*.*(..))")
     public void logBefore() {
-	System.out.println("@Before: STRAT " + sdFormat.format(current));
+	logger.info("@Before: START " + sdFormat.format( new Date()));
     }
 
     @Around("execution(* com.service.*.*(..))")
     public void userAdvice(ProceedingJoinPoint joinPoint) throws Throwable {
-	System.out.println("@Around: Before calculation-" +  sdFormat.format(current));
+	logger.info("@Around: Before calculation- " + sdFormat.format( new Date()));
 	joinPoint.proceed();
-	System.out.println("@Around: After calculation-" +  sdFormat.format(current));
+	logger.info("@Around: After calculation-" +  sdFormat.format( new Date()));
     }
 
     @AfterThrowing(pointcut = "execution(* com.service.*.*(..))", throwing = "exception")
     public void logAfterThrowing(Exception exception) {
-	System.out.println("@AfterReturning:" + sdFormat.format(current));
-	System.out.println("Exception caught:" + exception.getMessage());
+	logger.error("@Around: After calculation-" +  sdFormat.format( new Date()));
+	logger.error("Exception caught:" + exception.getMessage());
     }
 }
