@@ -6,4 +6,6 @@
 4. 在寫 execution method  可參考 (http://docs.spring.io/spring/docs/current/spring-framework-reference/html/aop.html#aop-pointcuts-examples)
 
 5. execution method 如果需要帶參數 ，可參考  (http://www.jianshu.com/p/def4c497571c)
+
+
 參考網址 : http://www.concretepage.com/spring/spring-aop-aspectj-annotation-example-with-aspect-pointcut-before-after-around-afterreturning-afterthrowing-advice#gradle
